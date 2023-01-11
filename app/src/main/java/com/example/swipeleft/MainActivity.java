@@ -35,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        VideoView videoView = (VideoView)findViewById(R.id.youtube_player_view);
+        //Set MediaController  to enable play, pause, forward, etc options.
+        MediaController mediaController= new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        //Location of Media File goes here...
+
+
         setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
