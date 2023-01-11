@@ -51,16 +51,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first" />
 
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="375dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view"
+        android:layout_width="412dp"
+        android:layout_height="244dp"
+        android:layout_marginBottom="-25dp"
+        app:autoPlay="true"
+        app:layout_constraintBottom_toBottomOf="@+id/textview_first"
+        app:videoId="IdneKLhsWOQ"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
