@@ -11,12 +11,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
-        android:text="@string/hello_first_fragment"
-        app:layout_constraintBottom_toTopOf="@id/likeButton"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toTopOf="@id/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/undoButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="368dp"
+        android:background="@drawable/roundbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_first" />
 
     <Button
         android:id="@+id/likeButton"
@@ -28,6 +39,28 @@
         app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first" />
+
+    <Button
+        android:id="@+id/dislikeButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="352dp"
+        android:background="@drawable/roundbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="375dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
