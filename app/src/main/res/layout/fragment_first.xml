@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:layout_marginBottom="70dp"
-        android:text="@string/hello_first_fragment"
         app:layout_constraintBottom_toTopOf="@id/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
