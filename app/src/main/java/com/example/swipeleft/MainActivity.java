@@ -3,8 +3,9 @@ package com.example.swipeleft;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.MediaController;
-import android.widget.VideoView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-
-    private String videoToPlay = "IdneKLhsWOQ";
+    private Videos videoToPlay = Videos.A;
+    private Button button;
 
 
     @Override
@@ -41,12 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
+        button = (Button) findViewById(R.id.likeButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getNextVideo(videoToPlay);
+            }
+        });
 
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = videoToPlay;
-                youTubePlayer.loadVideo(videoId, 0);
+                youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
+                ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
             }
         });
 
@@ -89,15 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public String getNextVideo(String lastVideoId){
-        videoToPlay = Videos.randomLetter().getVideoId();
-
-        if(lastVideoId.equals(videoToPlay)){
-            videoToPlay = Videos.randomLetter().getVideoId();
-        } else{
-            return videoToPlay;
+    private Videos getNextVideo(Videos lastVideoId){
+        while (lastVideoId.equals(videoToPlay)){
+            videoToPlay = Videos.randomLetter();
         }
         return videoToPlay;
     }
-
 }
