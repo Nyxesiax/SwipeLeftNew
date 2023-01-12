@@ -1,6 +1,7 @@
 package com.example.swipeleft;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,17 +47,23 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getNextVideo(videoToPlay);
+                Log.d("msg", "hallo");
+               // getNextVideo(videoToPlay);
+
+                videoToPlay = Videos.B;
+                Log.d("da", videoToPlay.getVideoTitle());
+
             }
         });
 
-        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
-                ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
-            }
-        });
+            youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                    youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
+                    ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
+                }
+            });
+
 
 
 //        binding.fab.setOnClickListener(new View.OnClickListener() {
