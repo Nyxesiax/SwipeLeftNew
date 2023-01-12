@@ -90,8 +90,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getNextVideo(String lastVideoId){
+        videoToPlay = Videos.randomLetter().getVideoId();
 
-        return "random";
+        if(lastVideoId.equals(videoToPlay)){
+            videoToPlay = Videos.randomLetter().getVideoId();
+        } else{
+            return videoToPlay;
+        }
+        return videoToPlay;
     }
 
 }
