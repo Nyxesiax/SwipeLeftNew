@@ -3,6 +3,8 @@ package com.example.swipeleft;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    private String videoToPlay = "IdneKLhsWOQ";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        VideoView videoView = (VideoView)findViewById(R.id.youtube_player_view);
-        //Set MediaController  to enable play, pause, forward, etc options.
-        MediaController mediaController= new MediaController(this);
-        mediaController.setAnchorView(videoView);
-        //Location of Media File goes here...
-
 
         setSupportActionBar(binding.toolbar);
 
@@ -48,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "IdneKLhsWOQ";
+                String videoId = videoToPlay;
                 youTubePlayer.loadVideo(videoId, 0);
             }
         });
@@ -91,4 +88,10 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public String getNextVideo(String lastVideoId){
+
+        return "random";
+    }
+
 }
