@@ -38,4 +38,7 @@ public enum Videos {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 
+    public String getVideoId() {
+        return videoId;
+    }
 }
