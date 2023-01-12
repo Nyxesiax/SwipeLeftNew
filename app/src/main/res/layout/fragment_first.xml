@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:layout_marginBottom="70dp"
-        android:text="@string/hello_first_fragment"
         app:layout_constraintBottom_toTopOf="@id/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -36,6 +35,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="352dp"
         android:background="@drawable/roundbutton"
+        android:onClick="getNextVideo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +60,18 @@
 
         app:layout_constraintBottom_toBottomOf="@+id/textview_first"
         tools:layout_editor_absoluteX="-1dp" />
+
+    <TextView
+        android:id="@+id/video_title"
+        android:layout_width="377dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="18dp"
+        android:fontFamily="sans-serif-black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_first" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

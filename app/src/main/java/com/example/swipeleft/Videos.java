@@ -6,27 +6,29 @@ import java.util.List;
 import java.util.Random;
 
 public enum Videos {
-    A("IdneKLhsWOQ"),
-    B(""),
-    C(""),
+    A("IdneKLhsWOQ", "Wildest Dreams"),
+    B("vNoKguSdy4Y", "I knew you were troble");
+   /* C(""),
     D(""),
     E(""),
     F(""),
     G(""),
     H(""),
-    I(""),
+    I(""),x
     J(""),
     K(""),
     L(""),
     M(""),
     N(""),
     O(""),
-    P("");
+    P(""); */
 
     private String videoId;
+    private String videoTitle;
 
-    Videos(String videoId){
+    Videos(String videoId, String videoTitle){
         this.videoId = videoId;
+        this.videoTitle = videoTitle;
     }
 
     private static final List<Videos> VALUES =
@@ -40,5 +42,9 @@ public enum Videos {
 
     public String getVideoId() {
         return videoId;
+    }
+
+    public String getVideoTitle() {
+        return videoTitle;
     }
 }
