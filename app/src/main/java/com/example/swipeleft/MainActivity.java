@@ -47,12 +47,17 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("msg", "hallo");
+               Log.d("Current Video", videoToPlay.getVideoTitle());
                // getNextVideo(videoToPlay);
+                getNextVideo(videoToPlay);
+                Log.d("Next Video", videoToPlay.getVideoTitle());
 
-                videoToPlay = Videos.B;
                 Log.d("da", videoToPlay.getVideoTitle());
 
+                youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
+                    youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
+                    ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
+                });
             }
         });
 
@@ -104,8 +109,8 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private Videos getNextVideo(Videos lastVideoId){
-        while (lastVideoId.equals(videoToPlay)){
+    private Videos getNextVideo(Videos lastVideo){
+        while (lastVideo.equals(videoToPlay)){
             videoToPlay = Videos.randomLetter();
         }
         return videoToPlay;

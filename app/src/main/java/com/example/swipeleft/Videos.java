@@ -7,9 +7,9 @@ import java.util.Random;
 
 public enum Videos {
     A("IdneKLhsWOQ", "Wildest Dreams"),
-    B("vNoKguSdy4Y", "I knew you were troble");
-   /* C(""),
-    D(""),
+    B("vNoKguSdy4Y", "I knew you were troble"),
+    C("7F37r50VUTQ", "I Don’t Wanna Live Forever");
+ /*   D(""),
     E(""),
     F(""),
     G(""),
