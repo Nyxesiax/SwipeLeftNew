@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public enum Videos {
+
     A("KPLWWIOCOOQ", "Game of Thrones", new String[]{"Drama", "Fantasy"}),
     B("lrcqbavlbyQ", "Breaking Bad", new String[]{"Drama"}),
     C("IrBKwzL3K7s", "Sherlock", new String[]{"Abenteuer", "Krimi", "Drama"}),
