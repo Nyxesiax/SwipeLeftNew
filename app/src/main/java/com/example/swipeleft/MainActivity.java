@@ -1,6 +1,7 @@
 package com.example.swipeleft;
 
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,12 +21,14 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private Videos videoToPlay = Videos.A;
-    private Button button;
+    public ArrayList<Videos> arrayList = new ArrayList<>();
 
 
     @Override
@@ -43,23 +46,41 @@ public class MainActivity extends AppCompatActivity {
 
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
-        button = (Button) findViewById(R.id.likeButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button likeButton = (Button) findViewById(R.id.likeButton);
+        likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                arrayList.add(videoToPlay);
                Log.d("Current Video", videoToPlay.getVideoTitle());
                // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
                 Log.d("Next Video", videoToPlay.getVideoTitle());
 
                 Log.d("da", videoToPlay.getVideoTitle());
+                playYoutubeVideo(youTubePlayerView, videoToPlay);
 
-                youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
+                /*youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
                     youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
-                });
+                }); */
             }
         });
+
+        Button downButton = (Button) findViewById(R.id.dislikeButton);
+        downButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Current Video", videoToPlay.getVideoTitle());
+                // getNextVideo(videoToPlay);
+                getNextVideo(videoToPlay);
+                Log.d("Next Video", videoToPlay.getVideoTitle());
+
+                Log.d("da", videoToPlay.getVideoTitle());
+
+                playYoutubeVideo(youTubePlayerView, videoToPlay);
+            }
+        });
+
 
             youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                 @Override
@@ -68,16 +89,6 @@ public class MainActivity extends AppCompatActivity {
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
                 }
             });
-
-
-
-//        binding.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     @Override
@@ -114,5 +125,12 @@ public class MainActivity extends AppCompatActivity {
             videoToPlay = Videos.randomLetter();
         }
         return videoToPlay;
+    }
+
+    private void playYoutubeVideo(YouTubePlayerView youtubeView, Videos currentVideo) {
+        youtubeView.getYouTubePlayerWhenReady(youTubePlayer -> {
+            youTubePlayer.loadVideo(currentVideo.getVideoId(), 0);
+            ((TextView) findViewById(R.id.video_title)).setText(currentVideo.getVideoTitle());
+        });
     }
 }
