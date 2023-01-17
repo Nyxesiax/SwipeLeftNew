@@ -120,11 +120,10 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private Videos getNextVideo(Videos lastVideo){
+    private void getNextVideo(Videos lastVideo){
         while (lastVideo.equals(videoToPlay)){
             videoToPlay = Videos.randomLetter();
         }
-        return videoToPlay;
     }
 
     private void playYoutubeVideo(YouTubePlayerView youtubeView, Videos currentVideo) {
