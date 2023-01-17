@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("da", videoToPlay.getVideoTitle());
                 playYoutubeVideo(youTubePlayerView, videoToPlay);
+//                Log.d("enum test", Videos.valueOf("KPLWWIOCOOQ").toString());
 
                 /*youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
                     youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
