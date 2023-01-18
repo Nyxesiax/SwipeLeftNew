@@ -1,5 +1,6 @@
 package com.example.swipeleft;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    private Videos videoToPlay = Videos.A;
-    public ArrayList<Videos> arrayList = new ArrayList<>();
+    private Videos videoToPlay = Videos.GAMEOFTHRONES;
+    public ArrayList<String> arrayList = new ArrayList<>();
 
 
     @Override
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(videoToPlay);
+                arrayList.add(videoToPlay.getVideoTitle());
                Log.d("Current Video", videoToPlay.getVideoTitle());
                // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
@@ -57,11 +58,30 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("da", videoToPlay.getVideoTitle());
                 playYoutubeVideo(youTubePlayerView, videoToPlay);
+                for (String titel: arrayList) {
+                    Log.d("Titel in Arraylist", titel);
+                }
+
+//                Log.d("enum test", Videos.valueOf("KPLWWIOCOOQ").toString());
+
 
                 /*youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
                     youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
                 }); */
+            }
+        });
+
+        Button likedListButton = (Button) findViewById(R.id.goToLikedListButton);
+        likedListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Message", "Bin drin");
+                Intent intent = new Intent(MainActivity.this ,
+                        LikedList.class);
+                intent.putStringArrayListExtra("passedArrayList", arrayList);
+             //   startActivity(intent);
+                setContentView(R.layout.liked_list);
             }
         });
 
@@ -89,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
     }
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
