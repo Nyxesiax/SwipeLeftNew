@@ -7,22 +7,22 @@ import java.util.Random;
 
 public enum Videos {
 
-    A("KPLWWIOCOOQ", "Game of Thrones", new String[]{"Drama", "Fantasy"}),
-    B("lrcqbavlbyQ", "Breaking Bad", new String[]{"Drama"}),
-    C("IrBKwzL3K7s", "Sherlock", new String[]{"Abenteuer", "Krimi", "Drama"}),
-    D("V2ZxSJy_BOQ", "The Mandalorian", new String[]{"Abenteuer", "Sci-Fi"}),
-    E("s9APLXM9Ei8", "Chernobyl", new String[]{"Drama"}),
-    F("fVQUcaO4AvE", "True Detective", new String[]{"Krimi", "Drama", "Thriller"}),
-    G("b9EkMc79ZSU", "Stranger Things", new String[]{"Drama", "Fantasy", "Thriller"}),
-    H("sfAc2U20uyg", "The Walking Dead", new String[]{"Drama", "Horror"}),
-    I("kyDkHvi9yeI", "Band Of Brothers", new String[]{"Drama", "Krieg"}),
-    J("YQeUmSD1c3g", "Dexter", new String[]{"Drama", "Thriller"}),
-    K("9GgxinPwAGc", "Vikings", new String[]{"Abenteuer", "Drama", "Historie"}),
-    L("gijHVZ5YW4g", "Das Damengambit", new String[]{"Drama"}),
-    M("Di310WS8zLk", "Wednesday", new String[]{"Komödie", "Fantasy", "Thriller"}),
-    N("cjJLEYMzpjc", "How I Met Your Mother", new String[]{"Komödie"}),
-    O("sEOuJ4z5aTc", "Brooklyn-Nine-Nine", new String[]{"Komödie", "Krimi"}),
-    P("xl8zdCY-abw", "Narcos", new String[]{"Biopic", "Krimi", "Drama", "Thriller"});
+    GAMEOFTHRONES("dcFIvnj8_UI", "Game of Thrones", new String[]{"Drama", "Fantasy"}),
+    BREAKINGBAD("ceqOTZnhgY8", "Breaking Bad", new String[]{"Drama"}),
+    SHERLOCK("ofG0IIFe5rc", "Sherlock", new String[]{"Abenteuer", "Krimi", "Drama"}),
+    THEMANDALORIAN("V2ZxSJy_BOQ", "The Mandalorian", new String[]{"Abenteuer", "Sci-Fi"}),
+    CHERNOBYL("dsWF6vC8zpY", "Chernobyl", new String[]{"Drama"}),
+    TRUEDETECTIVE("oZkToJgabOA", "True Detective", new String[]{"Krimi", "Drama", "Thriller"}),
+    STRANGERTHINGS("jJU_1ZSi-To", "Stranger Things", new String[]{"Drama", "Fantasy", "Thriller"}),
+    THEWALKINGDEAD("sfAc2U20uyg", "The Walking Dead", new String[]{"Drama", "Horror"}),
+    BANDOFBROTHERS("kyDkHvi9yeI", "Band Of Brothers", new String[]{"Drama", "Krieg"}),
+    DEXTER("YQeUmSD1c3g", "Dexter", new String[]{"Drama", "Thriller"}),
+    VIKINGS("t9EV3DJPHow", "Vikings", new String[]{"Abenteuer", "Drama", "Historie"}),
+    DASDAMENGAMBIT("gijHVZ5YW4g", "Das Damengambit", new String[]{"Drama"}),
+    WEDNESDAY("3i6eGvEA5JA", "Wednesday", new String[]{"Komödie", "Fantasy", "Thriller"}),
+    HOWIMETYOURMOTHER("cjJLEYMzpjc", "How I Met Your Mother", new String[]{"Komödie"}),
+    BROOKLYNNINENINE("sEOuJ4z5aTc", "Brooklyn-Nine-Nine", new String[]{"Komödie", "Krimi"}),
+    NARCOS("4kpIwP_ruWw", "Narcos", new String[]{"Biopic", "Krimi", "Drama", "Thriller"});
 
     private final String[] genres;
     private String videoId;
