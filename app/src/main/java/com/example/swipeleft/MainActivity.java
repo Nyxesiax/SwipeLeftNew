@@ -40,8 +40,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         ImageView menuIcon = findViewById(R.id.menu_icon);
+        ImageView filterIcon = findViewById(R.id.filter_icon);
         TextView title = findViewById(R.id.toolbar_title);
 
+        filterIcon.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "filtern menu pls b0ss", Toast.LENGTH_SHORT).show();
+            }
+        });
         menuIcon.setOnClickListener(new View.OnClickListener(){
 
             @Override

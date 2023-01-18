@@ -50,4 +50,7 @@ public enum Videos {
     public String getVideoTitle() {
         return videoTitle;
     }
+
+    public String[] getGenres(){return genres;}
+
 }
