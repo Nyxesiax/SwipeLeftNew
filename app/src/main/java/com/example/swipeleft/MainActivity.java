@@ -21,14 +21,13 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    private Videos videoToPlay = Videos.A;
+    private Videos videoToPlay = Videos.GAMEOFTHRONES;
     public ArrayList<String> arrayList = new ArrayList<>();
 
 
@@ -62,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 for (String titel: arrayList) {
                     Log.d("Titel in Arraylist", titel);
                 }
+
+//                Log.d("enum test", Videos.valueOf("KPLWWIOCOOQ").toString());
+
+
                 /*youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
                     youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
