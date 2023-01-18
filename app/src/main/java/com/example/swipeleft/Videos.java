@@ -19,10 +19,10 @@ public enum Videos {
     DEXTER("YQeUmSD1c3g", "Dexter", new String[]{"Drama", "Thriller"}),
     VIKINGS("t9EV3DJPHow", "Vikings", new String[]{"Abenteuer", "Drama", "Historie"}),
     DASDAMENGAMBIT("gijHVZ5YW4g", "Das Damengambit", new String[]{"Drama"}),
-    WEDNESDAY("Di310WS8zLk", "Wednesday", new String[]{"Komödie", "Fantasy", "Thriller"}),
+    WEDNESDAY("3i6eGvEA5JA", "Wednesday", new String[]{"Komödie", "Fantasy", "Thriller"}),
     HOWIMETYOURMOTHER("cjJLEYMzpjc", "How I Met Your Mother", new String[]{"Komödie"}),
     BROOKLYNNINENINE("sEOuJ4z5aTc", "Brooklyn-Nine-Nine", new String[]{"Komödie", "Krimi"}),
-    NARCOS("xl8zdCY-abw", "Narcos", new String[]{"Biopic", "Krimi", "Drama", "Thriller"});
+    NARCOS("4kpIwP_ruWw", "Narcos", new String[]{"Biopic", "Krimi", "Drama", "Thriller"});
 
     private final String[] genres;
     private String videoId;
