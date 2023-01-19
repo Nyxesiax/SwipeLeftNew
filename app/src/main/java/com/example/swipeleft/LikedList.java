@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 
@@ -16,17 +21,12 @@ public class LikedList extends Activity {
         setContentView(R.layout.liked_list);
 
         Log.d("LikedList", "LikedList erreicht");
-        ArrayList<Videos> arrayList = (ArrayList<Videos>) getIntent().getSerializableExtra("passedArrayList");
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-        for( int i = 0; i < arrayList.size(); i++ )
-        {
-            Log.d("Arraylist in LikedList Class", arrayList.get(i).getVideoTitle());
-            TextView textView = new TextView(this);
-            textView.setText(arrayList.get(i).getVideoTitle());
-            linearLayout.addView(textView);
-        }
+        Intent intent = getIntent();
+        ArrayList<String> arrayList = intent.getStringArrayListExtra("passedArrayList");
+        ListView listView = findViewById(R.id.listView);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
+
+        listView.setAdapter(arrayAdapter);
     }
-
-
-
 }
