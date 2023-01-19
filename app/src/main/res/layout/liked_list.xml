@@ -22,6 +22,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/likedListTitle" />
 
+        <include layout="@layout/toolbar_with_backbtn"/>
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="220dp"
