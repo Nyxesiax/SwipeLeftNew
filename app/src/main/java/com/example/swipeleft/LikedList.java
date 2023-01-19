@@ -29,7 +29,7 @@ public class LikedList extends Activity {
 //        Toolbar toolbar = findViewById(R.id.toolbar_backbtn);
 //        setSupportActionBar(toolbar);
 
-        ImageView back = findViewById(R.id.backbtn);
+     /*   ImageView back = findViewById(R.id.backbtn);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +37,7 @@ public class LikedList extends Activity {
                 Toast.makeText(LikedList.this, "back btn pressed.", Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         Log.d("LikedList", "LikedList erreicht");
         Intent intent = getIntent();
         ArrayList<String> arrayList = intent.getStringArrayListExtra("passedArrayList");

@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 //        ImageView menuIcon = findViewById(R.id.menu_icon);
 //        ImageView filterIcon = findViewById(R.id.filter_icon);
         TextView title = findViewById(R.id.toolbar_title);
-        MenuItem itemView = findViewById(R.id.action_liked);
         //onOptionsItemSelected(itemView);
         /*itemView.setOnClickListener(new View.OnClickListener(){
 
@@ -131,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_liked) {
+            Intent intent = new Intent(MainActivity.this ,
+                    LikedList.class);
+            intent.putExtra("passedArrayList", arrayList);
+            startActivity(intent);
+            Log.d("bla", "list selected");
             return true;
         }
 
