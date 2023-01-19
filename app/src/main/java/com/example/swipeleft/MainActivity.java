@@ -30,11 +30,18 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Videos videoToPlay = Videos.GAMEOFTHRONES;
     public ArrayList<String> acceptedArrayList = new ArrayList<>();
+    private ArrayList<String> genreList = new ArrayList<>();
     public ArrayList<Videos> alreadySeen = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        genreList.add(0, "Thriller");
+        genreList.add(1, "Horror");
+        genreList.add(2, "Drama");
+        genreList.add(3, "Komödie");
+        genreList.add(4, "Sci-Fi");
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -130,6 +137,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this ,
                     LikedList.class);
             intent.putExtra("passedArrayList", acceptedArrayList);
+            startActivity(intent);
+            Log.d("bla", "list selected");
+            return true;
+        } else if (id == R.id.action_filter) {
+            Intent intent = new Intent(MainActivity.this ,
+                    GenresActivity.class);
+            intent.putExtra("passedArrayList", genreList);
             startActivity(intent);
             Log.d("bla", "list selected");
             return true;
