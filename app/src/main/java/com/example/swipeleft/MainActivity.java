@@ -7,14 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,8 +22,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private Videos videoToPlay = Videos.GAMEOFTHRONES;
-    public ArrayList<String> arrayList = new ArrayList<>();
+    public ArrayList<String> acceptedArrayList = new ArrayList<>();
+    public ArrayList<Videos> alreadySeen = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(videoToPlay.getVideoTitle());
+                alreadySeen.add(videoToPlay);
+                acceptedArrayList.add(videoToPlay.getVideoTitle());
                Log.d("Current Video", videoToPlay.getVideoTitle());
                // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
@@ -93,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         downButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                alreadySeen.add(videoToPlay);
                 Log.d("Current Video", videoToPlay.getVideoTitle());
                 // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
@@ -132,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_liked) {
             Intent intent = new Intent(MainActivity.this ,
                     LikedList.class);
-            intent.putExtra("passedArrayList", arrayList);
+            intent.putExtra("passedArrayList", acceptedArrayList);
             startActivity(intent);
             Log.d("bla", "list selected");
             return true;
@@ -149,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getNextVideo(Videos lastVideo){
+
+
         while (lastVideo.equals(videoToPlay)){
             videoToPlay = Videos.randomLetter();
         }
