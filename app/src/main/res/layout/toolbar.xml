@@ -2,8 +2,10 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
-    android:id="@+id/toolbar">
+    android:id="@+id/toolbar"
+    app:popupTheme="@style/Theme.SwipeLeft.PopupOverlay">
 
     <RelativeLayout
         android:layout_width="match_parent"
