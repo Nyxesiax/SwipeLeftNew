@@ -7,10 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +22,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private Videos videoToPlay = Videos.GAMEOFTHRONES;
-    public ArrayList<String> arrayList = new ArrayList<>();
+    public ArrayList<String> acceptedArrayList = new ArrayList<>();
+    public ArrayList<Videos> alreadySeen = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ImageView menuIcon = findViewById(R.id.menu_icon);
+//        ImageView menuIcon = findViewById(R.id.menu_icon);
+//        ImageView filterIcon = findViewById(R.id.filter_icon);
         TextView title = findViewById(R.id.toolbar_title);
-
-        menuIcon.setOnClickListener(new View.OnClickListener(){
+        //onOptionsItemSelected(itemView);
+        /*itemView.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -59,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 //  setContentView(R.layout.liked_list);
             }
-        });//cock
+        });//cock*/
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(videoToPlay.getVideoTitle());
+                alreadySeen.add(videoToPlay);
+                acceptedArrayList.add(videoToPlay.getVideoTitle());
                Log.d("Current Video", videoToPlay.getVideoTitle());
                // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
@@ -91,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         downButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                alreadySeen.add(videoToPlay);
                 Log.d("Current Video", videoToPlay.getVideoTitle());
                 // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
@@ -112,27 +111,32 @@ public class MainActivity extends AppCompatActivity {
             });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_liked) {
+            Intent intent = new Intent(MainActivity.this ,
+                    LikedList.class);
+            intent.putExtra("passedArrayList", acceptedArrayList);
+            startActivity(intent);
+            Log.d("bla", "list selected");
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -142,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getNextVideo(Videos lastVideo){
+
+
         while (lastVideo.equals(videoToPlay)){
             videoToPlay = Videos.randomLetter();
         }

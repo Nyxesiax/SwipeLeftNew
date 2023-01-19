@@ -2,20 +2,31 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
-    android:id="@+id/toolbar">
+    android:id="@+id/toolbar"
+    app:popupTheme="@style/Theme.SwipeLeft.PopupOverlay">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/menu_icon"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/baseline_menu_24"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/menu_icon"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:src="@drawable/baseline_menu_24"/>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/filter_icon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_marginRight="40dp"-->
+<!--            android:src="@drawable/baseline_filter_alt_24" />-->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
