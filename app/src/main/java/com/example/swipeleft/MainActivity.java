@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
-        Button likeButton = (Button) findViewById(R.id.likeButton);
+        Button likeButton = findViewById(R.id.likeButton);
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,37 +83,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("da", videoToPlay.getVideoTitle());
                 playYoutubeVideo(youTubePlayerView, videoToPlay);
 //                Log.d("enum test", Videos.valueOf("KPLWWIOCOOQ").toString());
-
-                /*youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
-                    youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
-                    ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
-                }); */
             }
         });
 
-      /*  Button likedListButton = (Button) findViewById(R.id.goToLikedListButton);
-        likedListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Message", "Bin drin");
-                Intent intent = new Intent(MainActivity.this ,
-                        LikedList.class);
 
-                intent.putExtra("passedArrayList", arrayList);
-                for( int i = 0; i < arrayList.size(); i++ )
-                {
-
-                    //Log.d("Arraylist in LikedList Class", arrayList.get(i));
-                    TextView textView = findViewById(R.id.text);
-                    textView.setText(arrayList.get(i));
-                }
-                Log.d("bla", arrayList.get(0)+ arrayList.get(1));
-                startActivity(intent);
-              //  setContentView(R.layout.liked_list);
-            }
-        }); */
-
-        Button downButton = (Button) findViewById(R.id.dislikeButton);
+        Button downButton = findViewById(R.id.dislikeButton);
         downButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
