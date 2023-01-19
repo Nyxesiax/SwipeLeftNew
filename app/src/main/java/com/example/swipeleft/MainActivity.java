@@ -55,16 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Message", "Bin drin");
                 Intent intent = new Intent(MainActivity.this ,
                         LikedList.class);
-
                 intent.putExtra("passedArrayList", arrayList);
-        /*        for( int i = 0; i < arrayList.size(); i++ )
-                {
-
-                    //Log.d("Arraylist in LikedList Class", arrayList.get(i));
-                    TextView textView = findViewById(R.id.text);
-                    textView.setText(arrayList.get(i));
-                } */
-         //       Log.d("bla", arrayList.get(0)+ arrayList.get(1));
                 startActivity(intent);
                 //  setContentView(R.layout.liked_list);
             }
