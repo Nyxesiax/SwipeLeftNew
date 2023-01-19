@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -46,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
 //        ImageView menuIcon = findViewById(R.id.menu_icon);
 //        ImageView filterIcon = findViewById(R.id.filter_icon);
         TextView title = findViewById(R.id.toolbar_title);
-        menuIcon.setOnClickListener(new View.OnClickListener(){
+        MenuItem itemView = findViewById(R.id.action_liked);
+        //onOptionsItemSelected(itemView);
+        /*itemView.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 //  setContentView(R.layout.liked_list);
             }
-        });//cock
+        });//cock*/
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
