@@ -1,5 +1,6 @@
 package com.example.swipeleft;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -7,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private Videos videoToPlay = Videos.GAMEOFTHRONES;
-    public ArrayList<Videos> arrayList = new ArrayList<>();
+    public ArrayList<String> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +46,20 @@ public class MainActivity extends AppCompatActivity {
 //        ImageView menuIcon = findViewById(R.id.menu_icon);
 //        ImageView filterIcon = findViewById(R.id.filter_icon);
         TextView title = findViewById(R.id.toolbar_title);
+        menuIcon.setOnClickListener(new View.OnClickListener(){
 
-//        filterIcon.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "filtern menu pls b0ss", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        menuIcon.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "liked list bitte aufrufen!", Toast.LENGTH_SHORT).show();
-//            }
-//        });//cock
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "liked list bitte aufrufen!", Toast.LENGTH_SHORT).show();
+
+                Log.d("Message", "Bin drin");
+                Intent intent = new Intent(MainActivity.this ,
+                        LikedList.class);
+                intent.putExtra("passedArrayList", arrayList);
+                startActivity(intent);
+                //  setContentView(R.layout.liked_list);
+            }
+        });//cock
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
-        Button likeButton = (Button) findViewById(R.id.likeButton);
+        Button likeButton = findViewById(R.id.likeButton);
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(videoToPlay);
+                arrayList.add(videoToPlay.getVideoTitle());
                Log.d("Current Video", videoToPlay.getVideoTitle());
                // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
@@ -80,15 +83,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("da", videoToPlay.getVideoTitle());
                 playYoutubeVideo(youTubePlayerView, videoToPlay);
 //                Log.d("enum test", Videos.valueOf("KPLWWIOCOOQ").toString());
-
-                /*youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
-                    youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
-                    ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
-                }); */
             }
         });
 
-        Button downButton = (Button) findViewById(R.id.dislikeButton);
+
+        Button downButton = findViewById(R.id.dislikeButton);
         downButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
