@@ -39,24 +39,24 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ImageView menuIcon = findViewById(R.id.menu_icon);
-        ImageView filterIcon = findViewById(R.id.filter_icon);
+//        ImageView menuIcon = findViewById(R.id.menu_icon);
+//        ImageView filterIcon = findViewById(R.id.filter_icon);
         TextView title = findViewById(R.id.toolbar_title);
 
-        filterIcon.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "filtern menu pls b0ss", Toast.LENGTH_SHORT).show();
-            }
-        });
-        menuIcon.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "liked list bitte aufrufen!", Toast.LENGTH_SHORT).show();
-            }
-        });//cock
+//        filterIcon.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(MainActivity.this, "filtern menu pls b0ss", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        menuIcon.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(MainActivity.this, "liked list bitte aufrufen!", Toast.LENGTH_SHORT).show();
+//            }
+//        });//cock
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -113,27 +113,27 @@ public class MainActivity extends AppCompatActivity {
             });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_liked) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

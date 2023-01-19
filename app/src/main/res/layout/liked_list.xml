@@ -13,6 +13,8 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="2dp">
 
+        <include layout="@layout/toolbar_with_backbtn"/>
+
         <TextView
             android:id="@+id/likedListTitle"
             android:layout_width="183dp"
