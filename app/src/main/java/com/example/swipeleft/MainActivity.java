@@ -1,5 +1,6 @@
 package com.example.swipeleft;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -7,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private Videos videoToPlay = Videos.GAMEOFTHRONES;
-    public ArrayList<Videos> arrayList = new ArrayList<>();
+    public ArrayList<String> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "liked list bitte aufrufen!", Toast.LENGTH_SHORT).show();
+
+                Log.d("Message", "Bin drin");
+                Intent intent = new Intent(MainActivity.this ,
+                        LikedList.class);
+
+                intent.putExtra("passedArrayList", arrayList);
+        /*        for( int i = 0; i < arrayList.size(); i++ )
+                {
+
+                    //Log.d("Arraylist in LikedList Class", arrayList.get(i));
+                    TextView textView = findViewById(R.id.text);
+                    textView.setText(arrayList.get(i));
+                } */
+         //       Log.d("bla", arrayList.get(0)+ arrayList.get(1));
+                startActivity(intent);
+                //  setContentView(R.layout.liked_list);
             }
         });//cock
 
@@ -63,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(videoToPlay);
+                arrayList.add(videoToPlay.getVideoTitle());
                Log.d("Current Video", videoToPlay.getVideoTitle());
                // getNextVideo(videoToPlay);
                 getNextVideo(videoToPlay);
@@ -79,6 +99,28 @@ public class MainActivity extends AppCompatActivity {
                 }); */
             }
         });
+
+      /*  Button likedListButton = (Button) findViewById(R.id.goToLikedListButton);
+        likedListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Message", "Bin drin");
+                Intent intent = new Intent(MainActivity.this ,
+                        LikedList.class);
+
+                intent.putExtra("passedArrayList", arrayList);
+                for( int i = 0; i < arrayList.size(); i++ )
+                {
+
+                    //Log.d("Arraylist in LikedList Class", arrayList.get(i));
+                    TextView textView = findViewById(R.id.text);
+                    textView.setText(arrayList.get(i));
+                }
+                Log.d("bla", arrayList.get(0)+ arrayList.get(1));
+                startActivity(intent);
+              //  setContentView(R.layout.liked_list);
+            }
+        }); */
 
         Button downButton = (Button) findViewById(R.id.dislikeButton);
         downButton.setOnClickListener(new View.OnClickListener() {

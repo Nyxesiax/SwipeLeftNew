@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 
@@ -16,17 +19,20 @@ public class LikedList extends Activity {
         setContentView(R.layout.liked_list);
 
         Log.d("LikedList", "LikedList erreicht");
-        ArrayList<Videos> arrayList = (ArrayList<Videos>) getIntent().getSerializableExtra("passedArrayList");
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        Intent intent = getIntent();
+        ArrayList<String> arrayList = intent.getStringArrayListExtra("passedArrayList");
+/*
         for( int i = 0; i < arrayList.size(); i++ )
         {
-            Log.d("Arraylist in LikedList Class", arrayList.get(i).getVideoTitle());
+            Log.d("Arraylist in LikedList Class", arrayList.get(i));
+            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(220, 20);
             TextView textView = new TextView(this);
-            textView.setText(arrayList.get(i).getVideoTitle());
-            linearLayout.addView(textView);
+            textView.setLayoutParams(layoutParams);
+
+            textView.setTextSize(16);
+            textView.setText(arrayList.get(i));
         }
+        finish();
+        startActivity(getIntent());*/
     }
-
-
-
 }
