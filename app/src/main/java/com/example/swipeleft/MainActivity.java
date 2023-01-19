@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
         genreList.add(2, "Drama");
         genreList.add(3, "Komödie");
         genreList.add(4, "Sci-Fi");
+        genreList.add(5, "Krimi");
+        genreList.add(6, "Krieg");
+        genreList.add(7, "Fantasy");
+        genreList.add(8, "Abenteuer");
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
