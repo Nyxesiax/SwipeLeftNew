@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Videos videoToPlay = Videos.GAMEOFTHRONES;
     public ArrayList<String> acceptedArrayList = new ArrayList<>();
+    private ArrayList<String> genreList = new ArrayList<>();
     public ArrayList<Videos> alreadySeen = new ArrayList<>();
 
     private Videos previousVideo = Videos.GAMEOFTHRONES;
@@ -52,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        genreList.add(0, "Thriller");
+        genreList.add(1, "Horror");
+        genreList.add(2, "Drama");
+        genreList.add(3, "Komödie");
+        genreList.add(4, "Sci-Fi");
+        genreList.add(5, "Krimi");
+        genreList.add(6, "Krieg");
+        genreList.add(7, "Fantasy");
+        genreList.add(8, "Abenteuer");
+
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -147,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                     youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
+                    ((TextView) findViewById(R.id.video_rating)).setText(videoToPlay.getBewertung());
+                    ((TextView) findViewById(R.id.video_release)).setText(videoToPlay.getJahr());
                 }
             });
     }
@@ -213,6 +228,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             Log.d("bla", "list selected");
             return true;
+        } else if (id == R.id.action_filter) {
+            Intent intent = new Intent(MainActivity.this ,
+                    GenresActivity.class);
+            intent.putExtra("passedArrayList", genreList);
+            startActivity(intent);
+            Log.d("bla", "list selected");
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -242,6 +264,8 @@ public class MainActivity extends AppCompatActivity {
         youtubeView.getYouTubePlayerWhenReady(youTubePlayer -> {
             youTubePlayer.loadVideo(currentVideo.getVideoId(), 0);
             ((TextView) findViewById(R.id.video_title)).setText(currentVideo.getVideoTitle());
+            ((TextView) findViewById(R.id.video_rating)).setText(currentVideo.getBewertung());
+            ((TextView) findViewById(R.id.video_release)).setText(currentVideo.getJahr());
         });
     }
 }
