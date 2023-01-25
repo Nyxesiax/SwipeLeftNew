@@ -1,17 +1,24 @@
 package com.example.swipeleft;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,6 +30,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> acceptedArrayList = new ArrayList<>();
     private ArrayList<String> genreList = new ArrayList<>();
     public ArrayList<Videos> alreadySeen = new ArrayList<>();
+
+    private Videos previousVideo = Videos.GAMEOFTHRONES;
+
+    int undoCounter = 0;
+
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         genreList.add(6, "Krieg");
         genreList.add(7, "Fantasy");
         genreList.add(8, "Abenteuer");
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -70,7 +88,10 @@ public class MainActivity extends AppCompatActivity {
         });//cock*/
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+
+
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
@@ -91,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("da", videoToPlay.getVideoTitle());
                 playYoutubeVideo(youTubePlayerView, videoToPlay);
+                undoCounter = 0;
 //                Log.d("enum test", Videos.valueOf("KPLWWIOCOOQ").toString());
             }
         });
@@ -109,6 +131,26 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("da", videoToPlay.getVideoTitle());
 
                 playYoutubeVideo(youTubePlayerView, videoToPlay);
+                undoCounter = 0;
+            }
+        });
+
+        Button backButton = findViewById(R.id.undoButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                undoCounter = undoCounter + 1;
+                Log.d("Counter", "Counter amnount: " + undoCounter);
+                if (undoCounter == 1) {
+
+                    playYoutubeVideo(youTubePlayerView, previousVideo);
+
+                }
+                    else {
+                        Log.d("msg", "i'm in Toast!");
+                    Toast.makeText(getBaseContext(), "Zurückgehen nur einmal hintereinander möglich.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -122,6 +164,46 @@ public class MainActivity extends AppCompatActivity {
                     ((TextView) findViewById(R.id.video_release)).setText(videoToPlay.getJahr());
                 }
             });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+                if (Math.abs(deltaX) > MIN_DISTANCE)
+                {
+
+                    if (x2 > x1)
+                    {
+                        Toast.makeText(this, "Left to Right swipe [Next]", Toast.LENGTH_SHORT).show ();
+                        Toast.makeText(this, "left2right swipe", Toast.LENGTH_SHORT).show ();
+                        acceptedArrayList.add(videoToPlay.getVideoTitle());
+                        getNextVideo(videoToPlay);
+                        playYoutubeVideo(youTubePlayerView, videoToPlay);
+                        undoCounter = 0;
+                    }
+
+                    // Right to left swipe action
+                    else
+                    {
+                        Toast.makeText(this, "Right to Left swipe [Previous]", Toast.LENGTH_SHORT).show ();
+                        getNextVideo(videoToPlay);
+                        playYoutubeVideo(youTubePlayerView, videoToPlay);
+                        undoCounter = 0;
+                    }
+
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
@@ -167,9 +249,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void getNextVideo(Videos lastVideo){
 
-
         while (lastVideo.equals(videoToPlay)){
-            videoToPlay = Videos.randomLetter();
+            if (undoCounter == 0) {
+                previousVideo = videoToPlay;
+                videoToPlay = Videos.randomLetter();
+            } else {
+                break;
+            }
+
         }
     }
 
