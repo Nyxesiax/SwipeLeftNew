@@ -175,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
         youtubeView.getYouTubePlayerWhenReady(youTubePlayer -> {
             youTubePlayer.loadVideo(currentVideo.getVideoId(), 0);
             ((TextView) findViewById(R.id.video_title)).setText(currentVideo.getVideoTitle());
+//            ((TextView) findViewById(R.id.video_rating)).setText(currentVideo.getBewertung());
+//            ((TextView) findViewById(R.id.video_release)).setText(currentVideo.getJahr());
         });
     }
 }
