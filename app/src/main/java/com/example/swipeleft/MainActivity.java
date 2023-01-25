@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     private Videos previousVideo = Videos.GAMEOFTHRONES;
 
     int undoCounter = 0;
+
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
 
 
 
@@ -142,6 +149,46 @@ public class MainActivity extends AppCompatActivity {
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
                 }
             });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+                if (Math.abs(deltaX) > MIN_DISTANCE)
+                {
+
+                    if (x2 > x1)
+                    {
+                        Toast.makeText(this, "Left to Right swipe [Next]", Toast.LENGTH_SHORT).show ();
+                        Toast.makeText(this, "left2right swipe", Toast.LENGTH_SHORT).show ();
+                        acceptedArrayList.add(videoToPlay.getVideoTitle());
+                        getNextVideo(videoToPlay);
+                        playYoutubeVideo(youTubePlayerView, videoToPlay);
+                        undoCounter = 0;
+                    }
+
+                    // Right to left swipe action
+                    else
+                    {
+                        Toast.makeText(this, "Right to Left swipe [Previous]", Toast.LENGTH_SHORT).show ();
+                        getNextVideo(videoToPlay);
+                        playYoutubeVideo(youTubePlayerView, videoToPlay);
+                        undoCounter = 0;
+                    }
+
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     @Override
