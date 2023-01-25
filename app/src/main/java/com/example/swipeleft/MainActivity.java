@@ -183,9 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (x2 > x1)
                     {
-                        Toast.makeText(this, "Left to Right swipe [Next]", Toast.LENGTH_SHORT).show ();
-                        Toast.makeText(this, "left2right swipe", Toast.LENGTH_SHORT).show ();
-                        acceptedArrayList.add(videoToPlay.getVideoTitle());
+                        Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show ();
                         getNextVideo(videoToPlay);
                         playYoutubeVideo(youTubePlayerView, videoToPlay);
                         undoCounter = 0;
@@ -194,7 +192,8 @@ public class MainActivity extends AppCompatActivity {
                     // Right to left swipe action
                     else
                     {
-                        Toast.makeText(this, "Right to Left swipe [Previous]", Toast.LENGTH_SHORT).show ();
+                        acceptedArrayList.add(videoToPlay.getVideoTitle());
+                        Toast.makeText(this, "Swipe Left", Toast.LENGTH_SHORT).show ();
                         getNextVideo(videoToPlay);
                         playYoutubeVideo(youTubePlayerView, videoToPlay);
                         undoCounter = 0;
