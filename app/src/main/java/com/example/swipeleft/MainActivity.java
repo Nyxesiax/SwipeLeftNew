@@ -118,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                     youTubePlayer.loadVideo(videoToPlay.getVideoId(), 0);
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
+                    ((TextView) findViewById(R.id.video_rating)).setText(videoToPlay.getBewertung());
+                    ((TextView) findViewById(R.id.video_release)).setText(videoToPlay.getJahr());
                 }
             });
     }
@@ -175,8 +177,8 @@ public class MainActivity extends AppCompatActivity {
         youtubeView.getYouTubePlayerWhenReady(youTubePlayer -> {
             youTubePlayer.loadVideo(currentVideo.getVideoId(), 0);
             ((TextView) findViewById(R.id.video_title)).setText(currentVideo.getVideoTitle());
-//            ((TextView) findViewById(R.id.video_rating)).setText(currentVideo.getBewertung());
-//            ((TextView) findViewById(R.id.video_release)).setText(currentVideo.getJahr());
+            ((TextView) findViewById(R.id.video_rating)).setText(currentVideo.getBewertung());
+            ((TextView) findViewById(R.id.video_release)).setText(currentVideo.getJahr());
         });
     }
 }
