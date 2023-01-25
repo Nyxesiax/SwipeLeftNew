@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <size android:height="80dp" android:width="80dp"/>
+            <solid android:color="#5fd5d7" />
+            <corners android:radius="40dp" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/baseline_arrow_back_ios_24"
+        android:start="60px"/>
+</layer-list>
