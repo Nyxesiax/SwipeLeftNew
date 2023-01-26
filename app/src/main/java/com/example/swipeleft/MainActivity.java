@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                     else {
                         Log.d("msg", "i'm in Toast!");
-                    Toast.makeText(getBaseContext(), "Zurückgehen nur einmal hintereinander möglich.",
+                    Toast.makeText(getBaseContext(), "Das vorletzte Video habe ich leider vergessen :(",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     ((TextView) findViewById(R.id.video_title)).setText(videoToPlay.getVideoTitle());
                     ((TextView) findViewById(R.id.video_rating)).setText(videoToPlay.getBewertung());
                     ((TextView) findViewById(R.id.video_release)).setText(videoToPlay.getJahr());
+                    ((TextView) findViewById(R.id.video_description)).setText(videoToPlay.getBeschreibung());
                 }
             });
     }
@@ -265,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.video_title)).setText(currentVideo.getVideoTitle());
             ((TextView) findViewById(R.id.video_rating)).setText(currentVideo.getBewertung());
             ((TextView) findViewById(R.id.video_release)).setText(currentVideo.getJahr());
+            ((TextView) findViewById(R.id.video_description)).setText(videoToPlay.getBeschreibung());
         });
     }
 }
