@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (x2 > x1)
                     {
-                        Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show ();
+                        Toast.makeText(this, "Disliked", Toast.LENGTH_SHORT).show ();
                         getNextVideo(videoToPlay);
                         playYoutubeVideo(youTubePlayerView, videoToPlay);
                         undoCounter = 0;
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                     else
                     {
                         acceptedArrayList.add(videoToPlay.getVideoTitle());
-                        Toast.makeText(this, "Swipe Left", Toast.LENGTH_SHORT).show ();
+                        Toast.makeText(this, "Liked", Toast.LENGTH_SHORT).show ();
                         getNextVideo(videoToPlay);
                         playYoutubeVideo(youTubePlayerView, videoToPlay);
                         undoCounter = 0;
